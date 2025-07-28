@@ -8,6 +8,8 @@
 
 只需要将serverside-ui.jar与start-all-stand-alone.sh上传到服务器然后执行
 ``sh start-all-stand-alone.sh -a demo start``
+调试完成后
+``sh start-all-stand-alone.sh -a demo stop``
 
 然后访问ip:9091,在线debug即可
 
