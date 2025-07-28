@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import qunar.tc.bistoury.application.api.pojo.AppServer;
+import qunar.tc.bistoury.application.k8s.config.CustomizeConfig;
 import qunar.tc.bistoury.application.k8s.dao.AppServerDao;
 import qunar.tc.bistoury.application.k8s.service.K8sService;
 import qunar.tc.bistoury.application.k8s.utils.AppCodeUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,9 +23,13 @@ public class K8sAppServerDaoImpl implements AppServerDao {
     @Autowired
     K8sService k8sService;
 
+
+    @Autowired
+    private CustomizeConfig customizeConfig;
+
     @Override
     public List<AppServer> getAppServerByAppCode(String appCode) {
-        AppCodeUtil.AppCodeBean appCodeBean = AppCodeUtil.parseAppCode(appCode);
+        /*AppCodeUtil.AppCodeBean appCodeBean = AppCodeUtil.parseAppCode(appCode);
 
 
         PodList podList = k8sService.podList(appCodeBean.getNamespace(), appCodeBean.getName());
@@ -37,7 +43,18 @@ public class K8sAppServerDaoImpl implements AppServerDao {
             server.setAutoJStackEnable(true);
             server.setPort(80);
             return server;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList());*/
+        List<AppServer> collect = new ArrayList<>();
+        AppServer server = new AppServer();
+        server.setAppCode(appCode);
+        server.setPort(80);
+        server.setHost(customizeConfig.getIp());
+        server.setIp(customizeConfig.getIp());
+        server.setLogDir(customizeConfig.getWorkDir());
+        server.setAutoJMapHistoEnable(true);
+        server.setAutoJStackEnable(true);
+        collect.add(server);
+        return collect;
 
     }
 

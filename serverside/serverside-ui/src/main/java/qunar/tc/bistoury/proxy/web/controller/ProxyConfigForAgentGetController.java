@@ -85,7 +85,7 @@ public class ProxyConfigForAgentGetController {
         Optional<AgentConnection> connection = agentConnectionStore.getConnection(agentIp);
         if (!connection.isPresent() || !connection.get().isActive()) {
             // 拉起 agent
-            applicationService.loadAgent(host);
+            //applicationService.loadAgent(host);
         }
         // 组装 websocket 链接地址给页面，一般1-2秒就可以拉起 agent
         String proxyWebSocketUrl = "ws://" + uiIp + ":" + serverNodePort + "/ws";

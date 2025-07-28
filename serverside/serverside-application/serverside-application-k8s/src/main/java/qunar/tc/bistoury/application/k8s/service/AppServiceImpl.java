@@ -22,9 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import qunar.tc.bistoury.application.api.AppService;
 import qunar.tc.bistoury.application.api.pojo.Application;
+import qunar.tc.bistoury.application.k8s.config.CustomizeConfig;
 import qunar.tc.bistoury.application.k8s.dao.ApplicationDao;
 import qunar.tc.bistoury.application.k8s.dao.ApplicationUserDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,9 +42,13 @@ public class AppServiceImpl implements AppService {
     @Autowired
     private ApplicationUserDao applicationUserDao;
 
+    @Autowired
+    private CustomizeConfig customizeConfig;
+
     @Override
     public Set<String> getApps(String userCode) {
-        List<String> appCodes = this.applicationUserDao.getAppCodesByUserCode(userCode);
+        List<String> appCodes = new ArrayList<>(); //applicationUserDao.getAppCodesByUserCode(userCode);
+        appCodes.add(customizeConfig.getAppName());
         return Sets.newHashSet(appCodes);
     }
 

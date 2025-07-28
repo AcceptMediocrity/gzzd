@@ -56,18 +56,3 @@ proxy:
 masterUrl: ""
 token: ""
 namespace: dev
----
-spring:
-  profiles:
-    - dev
-proxy:
-  server:
-    # 给浏览器访问
-    uiIp: 192.168.10.146
-    # 给 pod 访问
-    proxyIp: 192.168.10.146
-    # 和浏览器建立ws链接的端口，在集群里需要暴露为 node port
-    nodePort: 9013
-masterUrl: ""
-token: ""
-namespace: dev

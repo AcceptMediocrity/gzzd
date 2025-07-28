@@ -32,7 +32,7 @@ public class AdminAppServiceImpl implements AdminAppService {
     @Autowired
     private ApplicationService applicationService;
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         refreshAllApp();
 
