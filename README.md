@@ -2,7 +2,7 @@
 
 修改为单机版
 
-部署参数可以参考standalone下start-all-stand-alone.sh
+部署参数可以参考doc/standalone下start-all-stand-alone.sh
 
 比如要在线debug的jar为demo-xx.jar
 
