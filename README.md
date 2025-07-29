@@ -2,12 +2,14 @@
 
 修改为单机版
 
-部署参数可以参考standalone下start-all-stand-alone.sh
+部署参数可以参考doc/standalone下start-all-stand-alone.sh
 
 比如要在线debug的jar为demo-xx.jar
 
 只需要将serverside-ui.jar与start-all-stand-alone.sh上传到服务器然后执行
 ``sh start-all-stand-alone.sh -a demo start``
+调试完成后
+``sh start-all-stand-alone.sh -a demo stop``
 
 然后访问ip:9091,在线debug即可
 
