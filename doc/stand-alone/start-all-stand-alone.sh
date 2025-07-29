@@ -36,7 +36,7 @@ parse_args() {
     PROXY_SVR_PORT=9013
     PROXY_AGENT_PORT=9014
     IP=$(get_first_ipv4)
-    AGENT_DIR=${WORK_DIR}/gzzd
+
 
     # 先把长选项映射到短选项
     for arg in "$@"; do
@@ -70,6 +70,8 @@ parse_args() {
     # 必填校验
     [[ -z "$APP_NAME" ]] && { echo "错误：应用名称必填！"; usage; }
 
+    AGENT_DIR="${WORK_DIR}/gzzd/${APP_NAME}"
+
     # 端口必须是数字
     for p in "$UI_PORT" "$PROXY_SVR_PORT" "$PROXY_AGENT_PORT"; do
         [[ "$p" =~ ^[0-9]+$ ]] || { echo "错误：端口必须是数字！"; exit 1; }
@@ -80,7 +82,7 @@ main() {
     parse_args "$@"
 
     # 创建目录
-    mkdir -p "$WORK_DIR/gzzd"
+    mkdir -p "${AGENT_DIR}"
 
     # 打印配置，方便调试
     cat <<EOF
@@ -108,7 +110,7 @@ start(){
     target_pid=`ps -ef|grep -iv grep|grep serverside-ui | awk '{print $2}' | sort -n -k 1 | head -n 1`
     if [ -n ${target_pid} ]
     then
-        echo "serverside started!!!"
+      echo "serverside started!!!"
     else
       echo "serverside not started!!!"
       exit 1
