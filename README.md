@@ -1,3 +1,8 @@
+
+之前使用这个是因为可以在线调试断点，现在arthas有了line命令(4.3.0) 支持设置断点条件及当前内存中的数据 所以更推荐arthas
+
+
+
 参考gzzd(https://github.com/pnboot/gzzd)
 
 修改为单机版
